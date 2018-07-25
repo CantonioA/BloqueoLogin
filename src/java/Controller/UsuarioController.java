@@ -10,6 +10,7 @@ import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import lombok.Data;
+import org.primefaces.context.RequestContext;
 
 @Data
 @Named(value = "usuarioController")
@@ -30,6 +31,7 @@ public class UsuarioController implements Serializable {
         if (number > 5) {
             number = 0;
             intentos = 0;
+            RequestContext.getCurrentInstance().execute("location.reload();");
         }
     }
 
