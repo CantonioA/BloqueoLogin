@@ -23,7 +23,6 @@ public class UsuarioController implements Serializable {
     //Variables de Logeo
     private String User;
     private String Pass;
-    private String block;
     private int intentos, number;
 
     public void increment() {
@@ -42,7 +41,6 @@ public class UsuarioController implements Serializable {
             usuario = dao.startSession(User, Pass);
             if (usuario != null) {
                 intentos = 0;
-                block = "PF('bui').hide()";
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("username", usuario);
                 switch (usuario.getNivel()) {
                     case "1":
@@ -56,9 +54,6 @@ public class UsuarioController implements Serializable {
                 setPass(null);
                 usuario = new Usuario();
                 intentos++;
-                if (intentos == 3) {
-                    block = "PF('bui').show()";
-                }
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Contraseña/Usuario Incorrecto"));
             }
         } catch (Exception e) {

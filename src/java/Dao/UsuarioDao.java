@@ -32,6 +32,8 @@ public class UsuarioDao extends DAO {
             return usuario;
         } catch (SQLException e) {
             throw e;
+        }finally{
+        this.Cerrar();
         }
     }
 
